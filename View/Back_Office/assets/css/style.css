@@ -1,0 +1,129 @@
+/* Global Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #141E30, #243B55);
+    color: #fff;
+  }
+  
+  /* Container Styles for Form Pages (Create & Edit) */
+  .form-container {
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Container Styles for List & Show Pages */
+  .list-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Headings */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Labels */
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ccc;
+  }
+  
+  /* Inputs and Textarea */
+  input[type="text"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #2d2d39;
+    color: #fff;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="date"]:focus,
+  textarea:focus {
+    box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+  }
+  
+  /* Submit Button */
+  .btn-create,
+  .btn-update {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #ff0099, #ff5c00);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-create:hover,
+  .btn-update:hover {
+    background: linear-gradient(to right, #ff0099, #ff7800);
+    transform: scale(1.02);
+  }
+  
+  /* Back Link / Navigation Links */
+  .back-link,
+  .add-link,
+  .action-link {
+    color: #ff0099;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .back-link:hover,
+  .add-link:hover,
+  .action-link:hover {
+    color: #ff5c00;
+  }
+  
+  /* Table Styles for List Page */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+  }
+  
+  table th {
+    background-color: #2d2d39;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: rgba(45, 45, 57, 0.8);
+  }
+  
