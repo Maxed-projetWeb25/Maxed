@@ -29,13 +29,8 @@
             <td><?php echo htmlspecialchars($row['description']); ?></td>
             <td><?php echo htmlspecialchars($row['date_creation']); ?></td>
             <td><?php echo htmlspecialchars($row['categorie']); ?></td>
-           
-            <form action="../../../quizz_crud/Back_Office/add-quizz.html" method="get">
-    <button type="submit">Return to Add Quizz</button>
-</form>
-
-
             <td>
+              <a href="show_quizz.php?id=<?php echo $row['id']; ?>" class="action-link">View</a> | 
               <a href="index.php?action=edit&id=<?php echo $row['id']; ?>" class="action-link">Edit</a> | 
               <a href="index.php?action=delete&id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this entry?');" class="action-link">Delete</a>
             </td>
@@ -43,6 +38,12 @@
         <?php endwhile; ?>
       </tbody>
     </table>
+
+    <!-- Return to Add Quizz button -->
+    <form action="../../../quizz_crud/Back_Office/add-quizz.html" method="get">
+      <button type="submit">Return to Add Quizz</button>
+    </form>
+
   </div>
 </body>
 </html>

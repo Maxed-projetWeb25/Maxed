@@ -1,0 +1,79 @@
+/* Global Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #141E30, #243B55);
+    color: #fff;
+}
+
+/* Container Styles for List & Show Pages */
+.list-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Question Block */
+.question-block {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.question-block h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Answers List */
+.question-block ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.question-block li {
+    padding: 8px;
+    background-color: #2d2d39;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.question-block li:hover {
+    background-color: #3a3a47;
+}
+
+/* Correct Answer Indicator */
+.question-block li span.correct {
+    font-size: 0.9rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff0099;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #ff5c00;
+}

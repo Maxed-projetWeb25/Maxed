@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Answer Quiz with Feedback</title>
+  <style>
+    /* Your CSS remains unchanged */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #01022f, #071b25);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .question {
+      margin-bottom: 30px;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 2px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    #result {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 20px;
+      color: #333;
+    }
+    .correct {
+      background-color: #c8e6c9;
+    }
+    .incorrect {
+      background-color: #ffcdd2;
+    }
+    .missed {
+      background-color: #fff9c4;
+    }
+    .feedback p {
+      margin: 5px 0 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Multi-Answer Quiz</h1>
+    <form id="quizForm" method="post">
+      <!-- Question 1 -->
+      <div class="question" data-question="q1">
+        <h3>1. Which of the following are programming languages? <em>(Select all that apply)</em></h3>
+        <label><input type="checkbox" name="q1[]" value="a"> HTML</label>
+        <label><input type="checkbox" name="q1[]" value="b"> Python</label>
+        <label><input type="checkbox" name="q1[]" value="c"> CSS</label>
+        <label><input type="checkbox" name="q1[]" value="d"> JavaScript</label>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question" data-question="q2">
+        <h3>2. Which are front-end technologies? <em>(Select all that apply)</em></h3>
+        <label><input type="checkbox" name="q2[]" value="a"> HTML</label>
+        <label><input type="checkbox" name="q2[]" value="b"> PHP</label>
+        <label><input type="checkbox" name="q2[]" value="c"> CSS</label>
+        <label><input type="checkbox" name="q2[]" value="d"> JavaScript</label>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question" data-question="q3">
+        <h3>3. Which of these are valid CSS frameworks? <em>(Select all that apply)</em></h3>
+        <label><input type="checkbox" name="q3[]" value="a"> Bootstrap</label>
+        <label><input type="checkbox" name="q3[]" value="b"> Laravel</label>
+        <label><input type="checkbox" name="q3[]" value="c"> Tailwind CSS</label>
+        <label><input type="checkbox" name="q3[]" value="d"> React</label>
+        <div class="feedback"></div>
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    <div id="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let score = 0;
+  const feedbackData = {};
+  const correctAnswers = {
+    q1: ['b', 'd'],
+    q2: ['a', 'c', 'd'],
+    q3: ['a', 'c']
+  };
+
+  let allAnswered = true;
+  for (const question in correctAnswers) {
+    const checkedInputs = document.querySelectorAll(`input[name="${question}[]"]:checked`);
+    if (checkedInputs.length === 0) {
+      allAnswered = false;
+      break;
+    }
+  }
+
+  if (!allAnswered) {
+    alert('Please answer all questions before submitting.');
+    return;
+  }
+
+  for (const question in correctAnswers) {
+    const questionDiv = document.querySelector(`.question[data-question="${question}"]`);
+    const checkboxes = questionDiv.querySelectorAll(`input[name="${question}[]"]`);
+    const correctOpts = correctAnswers[question];
+    let selectedValues = [];
+
+    checkboxes.forEach(box => {
+      if (box.checked) selectedValues.push(box.value);
+    });
+
+    if (arraysEqualIgnoreOrder(selectedValues, correctOpts)) {
+      score++;
+      feedbackData[question] = 'Correct';
+    } else {
+      const correctText = correctOpts.map(opt => {
+        const optLabel = Array.from(checkboxes).find(box => box.value === opt).parentElement.textContent;
+        return optLabel.trim();
+      }).join(', ');
+      feedbackData[question] = `Incorrect. Correct answers: ${correctText}`;
+    }
+  }
+
+  // Store results in localStorage
+  localStorage.setItem('quizScore', score);
+  localStorage.setItem('quizTotal', Object.keys(correctAnswers).length);
+  localStorage.setItem('quizFeedback', JSON.stringify(feedbackData));
+
+  // Redirect to result page
+  window.location.href = 'result.html';
+});
+
+function arraysEqualIgnoreOrder(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  let sorted1 = arr1.slice().sort();
+  let sorted2 = arr2.slice().sort();
+  return sorted1.every((value, index) => value === sorted2[index]);
+}
+
+  </script>
+</body>
+</html>

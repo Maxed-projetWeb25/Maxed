@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #01022f, #071b25);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .result-box {
+      background: rgb(79, 172, 226);
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .result-box h1 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+      font-size: 32px;
+    }
+
+    .btn-retry {
+      margin-top: 10px;
+      margin-bottom: 30px;
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #52a0dc;
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-retry:hover {
+      background-color: #2980b9;
+    }
+
+    .result-box p#score {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fc4a0a;
+      margin: 15px 0 30px;
+    }
+
+    .feedback-list {
+      text-align: left;
+    }
+
+    .feedback-list p {
+      background: #ecf0f1;
+      padding: 12px 16px;
+      border-left: 6px solid #3498db;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #34495e;
+    }
+
+    .feedback-list p strong {
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-box">
+    <h1>Your Quiz Result</h1>
+    <a href="quiz1.html" class="btn-retry">Try Again</a>
+    <p id="score"></p>
+    <div class="feedback-list" id="feedback"></div>
+  </div>
+
+  <script>
+    const score = localStorage.getItem('quizScore');
+    const total = localStorage.getItem('quizTotal');
+    const feedback = JSON.parse(localStorage.getItem('quizFeedback'));
+
+    document.getElementById('score').textContent = `You scored ${score} out of ${total}`;
+
+    const feedbackDiv = document.getElementById('feedback');
+    for (const question in feedback) {
+      const para = document.createElement('p');
+      para.innerHTML = `<strong>${question.toUpperCase()}</strong>: ${feedback[question]}`;
+      feedbackDiv.appendChild(para);
+    }
+
+    // Optional: Clear stored data after showing result
+    // localStorage.clear();
+  </script>
+</body>
+</html>
