@@ -19,12 +19,21 @@ if (!$quiz) {
   <link rel="stylesheet" href="style1.css">
   <style>
     .error-msg { color: red; font-size: 0.9em; }
+    #timer {
+      font-size: 1.2em;
+      color: red;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="quiz-container">
     <h1><?php echo htmlspecialchars($quiz['titre']); ?></h1>
     <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($quiz['description'])); ?></p>
+
+    <!-- Timer Display -->
+    <div id="timer">Time Remaining: <span id="time">10:00</span></div>
 
     <form id="quizForm" action="submit-quizz.php" method="post">
       <input type="hidden" name="id" value="<?php echo $quizzId; ?>">
@@ -57,6 +66,7 @@ if (!$quiz) {
   </div>
 
   <script>
+    // Timer validation for answers
     document.getElementById('quizForm').addEventListener('submit', function(e) {
       const questions = document.querySelectorAll('.question-block');
       let isValid = true;
@@ -82,6 +92,28 @@ if (!$quiz) {
         e.preventDefault();
       }
     });
+
+    // Timer functionality
+    let timeLeft = 600; // 10 minutes = 600 seconds
+    const timerDisplay = document.getElementById('time');
+    const quizForm = document.getElementById('quizForm');
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const secs = (seconds % 60).toString().padStart(2, '0');
+      return `${mins}:${secs}`;
+    }
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerDisplay.textContent = formatTime(timeLeft);
+
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        alert("Time is up! Submitting the quiz.");
+        quizForm.submit();
+      }
+    }, 1000);
   </script>
 </body>
 </html>

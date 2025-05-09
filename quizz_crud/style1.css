@@ -77,3 +77,18 @@ h1 {
 .back-link:hover {
     color: #ff5c00;
 }
+
+.download-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .download-btn:hover {
+    background-color: #45a049;
+  }
+  
