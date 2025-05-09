@@ -1,0 +1,101 @@
+/* Responsive Styles */
+
+/* Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .card-body {
+        padding: 1rem;
+    }
+
+    .theme-buttons {
+        flex-direction: column;
+    }
+
+    .theme-button {
+        width: 100%;
+    }
+
+    .table-responsive {
+        margin: 0 -1rem;
+    }
+
+    .dataTables_wrapper .dt-buttons {
+        float: none !important;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+        float: none !important;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .dataTables_wrapper .dt-buttons .btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .theme-buttons {
+        gap: 5px;
+    }
+
+    .theme-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .table th {
+        font-size: 0.8rem;
+    }
+
+    .table td {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .btn i {
+        font-size: 16px;
+    }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive {
+        max-height: 600px;
+        overflow-y: auto;
+    }
+}
+
+/* Print styles */
+@media print {
+    .theme-buttons,
+    .dt-buttons,
+    .dataTables_filter,
+    .dataTables_paginate {
+        display: none !important;
+    }
+
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .table {
+        width: 100% !important;
+    }
+
+    .table td,
+    .table th {
+        background-color: transparent !important;
+    }
+} 

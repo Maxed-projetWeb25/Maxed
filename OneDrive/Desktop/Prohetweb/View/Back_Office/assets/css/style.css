@@ -1,0 +1,31 @@
+/* Main Styles */
+body {
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.5;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.radius-10 {
+    border-radius: 10px;
+}
+
+.page-breadcrumb {
+    padding: 1rem 0;
+}
+
+.material-icons-outlined {
+    vertical-align: middle;
+}
+
+/* Chart container styles */
+#chart1, #chart2 {
+    min-height: 180px;
+}
+
+#locationChart, #capacityChart, #ticketStatusChart, #ticketTrendsChart {
+    min-height: 380px;
+} 

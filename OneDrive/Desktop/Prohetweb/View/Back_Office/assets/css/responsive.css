@@ -1,0 +1,24 @@
+@media (max-width: 1199px) {
+    .row-cols-xl-2 > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-breadcrumb {
+        display: none !important;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    #chart1, #chart2 {
+        min-height: 150px;
+    }
+    
+    #locationChart, #capacityChart, #ticketStatusChart, #ticketTrendsChart {
+        min-height: 300px;
+    }
+} 

@@ -1,0 +1,35 @@
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.card {
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+}
+
+.card-body {
+    background-color: #2d2d2d;
+}
+
+.breadcrumb-item {
+    color: #e0e0e0;
+}
+
+.breadcrumb-item a {
+    color: #3461ff;
+}
+
+.dropdown-menu {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+.dropdown-item {
+    color: #e0e0e0;
+}
+
+.dropdown-item:hover {
+    background-color: #404040;
+    color: #ffffff;
+} 
