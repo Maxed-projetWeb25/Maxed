@@ -21,9 +21,47 @@ if (!$course) {
 
 // Function to convert URLs to clickable links
 function makeLinksClickable($text) {
-    $pattern = '/((http|https|ftp):\/\/[^\s]+)/';
-    return preg_replace($pattern, '<a href="$1" target="_blank">$1</a>', $text);
+    return preg_replace_callback(
+        '/(https?:\/\/[^\s]+)/',
+        function ($matches) {
+            $url = $matches[1];
+
+            // YouTube
+            if (preg_match('#(?:youtube\.com/watch\?v=|youtu\.be/)([^\s&]+)#', $url, $id)) {
+                $videoId = htmlspecialchars($id[1]);
+                return '<div class="video-responsive"><iframe src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allowfullscreen></iframe></div>';
+            }
+
+            // Instagram
+            if (strpos($url, 'instagram.com') !== false) {
+                return '<blockquote class="instagram-media" data-instgrm-permalink="' . $url . '" data-instgrm-version="14"></blockquote>';
+            }
+
+            // Twitter
+            if (strpos($url, 'twitter.com') !== false) {
+                return '<blockquote class="twitter-tweet"><a href="' . $url . '"></a></blockquote>';
+            }
+
+            // Twitch
+            if (preg_match('#twitch\.tv/([^/]+)(/v/(\d+)|/videos/(\d+))?#', $url, $matches)) {
+                $channel = htmlspecialchars($matches[1]);
+                if (!empty($matches[3]) || !empty($matches[4])) {
+                    $videoId = !empty($matches[3]) ? $matches[3] : $matches[4];
+                    return '<iframe src="https://player.twitch.tv/?video=v' . $videoId . '&parent=yourdomain.com" frameborder="0" allowfullscreen></iframe>';
+                } else {
+                    return '<iframe src="https://player.twitch.tv/?channel=' . $channel . '&parent=yourdomain.com" frameborder="0" allowfullscreen></iframe>';
+                }
+            }
+
+            // Fallback: clickable link
+            return '<a href="' . $url . '" target="_blank">' . $url . '</a>';
+        },
+        $text
+    );
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +73,12 @@ function makeLinksClickable($text) {
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Instagram -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<!-- Twitter -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <style>
     /* Link Styling */
@@ -102,8 +146,24 @@ function makeLinksClickable($text) {
     }
     .bread-crumb li a {
         color: #ffffff;
+
     }
+    .video-responsive {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 </style>
+
 </head>
 
 <body>

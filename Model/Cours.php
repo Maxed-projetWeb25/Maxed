@@ -39,6 +39,15 @@ class Cours {
         $query = $db->prepare("DELETE FROM cours WHERE id_cours = ?");
         return $query->execute([$id]);
     }
+
+    public static function getNewCours($last_check) {
+    $db = Database::getConnection();
+    $query = $db->prepare("SELECT * FROM cours WHERE created_at > ?");
+    $query->execute([$last_check]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
     
 }
 ?>

@@ -25,6 +25,61 @@ $courses = $coursController->getAllCours();
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
+<div id="notification-box"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function checkForNewNotifications() {
+    $.ajax({
+        url: '/launcher/check_notifications.php',
+        method: 'GET',
+        success: function(response) {
+            if (response.length > 0) {
+                response.forEach(function(item) {
+                    alert(item.message);
+                });
+            }
+        },
+        error: function() {
+            console.log('Error checking notifications');
+        }
+    });
+}
+setInterval(checkForNewNotifications, 10000);
+
+</script>
+
+
+<style>
+.notification {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #856404;
+}
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    font-family: sans-serif;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(100%); }
+    10% { opacity: 1; transform: translateX(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(100%); }
+}
+
+</style>
+
 </head>
 
 <body>
@@ -404,6 +459,7 @@ $courses = $coursController->getAllCours();
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+
 
 </body>
 </html>

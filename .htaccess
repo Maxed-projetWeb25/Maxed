@@ -1,0 +1,20 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# Basic access control
+Require all granted
+
+# Enable PHP execution
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# Enable directory listing
+Options +Indexes
+
+# Set PHP error reporting
+php_flag display_errors on
+php_value error_reporting E_ALL 

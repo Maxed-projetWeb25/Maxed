@@ -1,30 +1,20 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $to = "bibodoubleb@example.com"; // 🔁 Replace with your email
+    $from = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $message = htmlspecialchars($_POST['message']);
+    $subject = "New Feedback on Chapter";
 
-// Define some constants
-define( "RECIPIENT_NAME", "John Doe" );
-define( "RECIPIENT_EMAIL", "youremail@mail.com" );
+    $headers = "From: $from\r\n";
+    $headers .= "Reply-To: $from\r\n";
+    $headers .= "Content-type: text/plain; charset=UTF-8\r\n";
 
-
-// Read the form values
-$success = false;
-$userName = isset( $_POST['username'] ) ? preg_replace( "/[^\.\-\' a-zA-Z0-9]/", "", $_POST['username'] ) : "";
-$senderEmail = isset( $_POST['email'] ) ? preg_replace( "/[^\.\-\' a-zA-Z0-9]/", "", $_POST['email'] ) : "";
-$message = isset( $_POST['message'] ) ? preg_replace( "/(From:|To:|BCC:|CC:|Message:|Content-Type:)/", "", $_POST['message'] ) : "";
-
-// If all values exist, send the email
-if ( $userName && $senderEmail && $message) {
-  $recipient = RECIPIENT_NAME . " <" . RECIPIENT_EMAIL . ">";
-  $headers = "From: " . $userName . " <" . $lastname . ">";
-  $msgBody = " Email: " . $senderEmail . " Message: " . $message . "";
-  $success = mail( $recipient, $headers, $msgBody );
-
-  //Set Location After Successsfull Submission
-  header('Location: contact.html?message=Successfull');
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Thank you for your feedback!";
+    } else {
+        echo "There was an error sending your message.";
+    }
+} else {
+    echo "Invalid request.";
 }
-
-else{
-	//Set Location After Unsuccesssfull Submission
-  	header('Location: index.html?message=Failed');	
-}
-
 ?>

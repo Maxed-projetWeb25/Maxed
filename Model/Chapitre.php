@@ -40,5 +40,13 @@ class Chapitre {
         $query->execute([$id_cours]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getNewChapitres($last_check) {
+    $db = Database::getConnection();
+    $query = $db->prepare("SELECT * FROM chapitre WHERE created_at > ?");
+    $query->execute([$last_check]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }
 ?>
