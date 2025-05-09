@@ -1,0 +1,55 @@
+Array
+(
+    [post_id] => 34
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 37
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 33
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 33
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 33
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123484
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123479
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123477
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123498
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123495
+    [delete_post] => 
+)
+Array
+(
+    [post_id] => 123499
+    [delete_post] => 
+)
